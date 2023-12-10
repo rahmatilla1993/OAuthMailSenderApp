@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api")
 public class TestController {
@@ -31,7 +33,7 @@ public class TestController {
     }
 
     @GetMapping("/register")
-    public HttpEntity<ApiResponse> secured(@AuthenticationPrincipal OAuth2User user) {
+    public HttpEntity<ApiResponse> secured(@AuthenticationPrincipal OAuth2User user) throws IOException {
         String name = user.getAttribute("name");
         String email = user.getAttribute("email");
         return ResponseEntity.ok(
